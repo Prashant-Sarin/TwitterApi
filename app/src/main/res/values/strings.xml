@@ -11,4 +11,5 @@
     <!--  Feed Activity  -->
     <string name="for_user">For %s</string>
     <string name="tweets">Latest Tweets</string>
+    <string name="count_placeholder">0</string>
 </resources>

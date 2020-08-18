@@ -17,6 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="@dimen/elevation"
         android:padding="@dimen/padding_standard">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -27,47 +28,138 @@
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="20"
             app:placeholderImage="@drawable/ic_user_56"
             app:roundAsCircle="true"
             app:roundedCornerRadius="56dp" />
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clFeedText"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_standard"
-            android:onClick="@{(v)->itemClickListener.onItemClick(v,feedModel)}"
-            android:text="@{feedModel.user.screenName}"
-            android:textColor="@color/black"
-            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sdvFeeds"
             app:layout_constraintTop_toTopOf="@+id/sdvFeeds"
-            tools:text="@string/name_placeholder" />
+            app:layout_constraintWidth_percent="80">
 
-        <ImageView
-            android:id="@+id/ivVerified"
-            android:layout_width="@dimen/image_width_small"
-            android:layout_height="@dimen/image_height_small"
-            android:paddingLeft="@dimen/padding_small"
-            android:src="@drawable/ic_check_circle_24"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/tvName"
-            app:layout_constraintStart_toEndOf="@+id/tvName"
-            app:layout_constraintTop_toTopOf="@+id/tvName" />
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_standard"
+                android:onClick="@{(v)->itemClickListener.onItemClick(v,feedModel)}"
+                android:text="@{feedModel.user.screenName}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_medium"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/name_placeholder" />
 
-        <TextView
-            android:id="@+id/tvText"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/ivVerified"
+                android:layout_width="@dimen/image_width_small"
+                android:layout_height="@dimen/image_height_small"
+                android:paddingStart="@dimen/padding_small"
+                android:src="@drawable/ic_check_circle_24"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/tvName"
+                app:layout_constraintStart_toEndOf="@+id/tvName"
+                app:layout_constraintTop_toTopOf="@+id/tvName" />
+
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_standard"
+                android:onClick="@{(v)->itemClickListener.onItemClick(v,feedModel)}"
+                android:paddingEnd="@dimen/padding_standard"
+                android:text="@{feedModel.text}"
+                android:textColor="@color/text_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName"
+                tools:text="@string/name_placeholder" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_standard"
-            android:onClick="@{(v)->itemClickListener.onItemClick(v,feedModel)}"
-            android:paddingEnd="@dimen/padding_standard"
-            android:text="@{feedModel.text}"
-            android:textColor="@color/text_gray"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sdvFeeds"
-            app:layout_constraintTop_toBottomOf="@+id/tvName"
-            tools:text="@string/name_placeholder" />
+            app:layout_constraintTop_toBottomOf="@+id/clFeedText"
+            app:layout_constraintWidth_percent="80">
 
+
+            <LinearLayout
+                android:id="@+id/llRetweets"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="@dimen/padding_standard"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/llLikes"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <ImageView
+                    android:id="@+id/ivRetweets"
+                    android:layout_width="@dimen/image_width_small"
+                    android:layout_height="@dimen/image_height_small"
+                    android:src="@drawable/ic_re_tweet_24"
+                    />
+
+                <TextView
+                    android:id="@+id/tvRetweetsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_small"
+                    android:padding="@dimen/padding_small"
+                    android:text="@{feedModel.retweetCount.toString()}"
+                    tools:text="@string/count_placeholder" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llLikes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="@dimen/padding_standard"
+                app:layout_constraintStart_toEndOf="@+id/llRetweets"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                >
+
+                <ImageView
+                    android:id="@+id/ivLikes"
+                    android:layout_width="@dimen/image_width_small"
+                    android:layout_height="@dimen/image_height_small"
+                    android:src="@drawable/ic_like"
+                     />
+
+                <TextView
+                    android:id="@+id/tvLikesCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_small"
+                    android:textSize="@dimen/text_small"
+                    android:text="@{feedModel.favoriteCount.toString()}"
+                    tools:text="@string/count_placeholder" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_gray"
+            android:paddingStart="@dimen/padding_standard"
+            android:paddingEnd="@dimen/padding_standard"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
