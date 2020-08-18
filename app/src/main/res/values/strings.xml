@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Twitter Api App</string>
+    <string name="no_network">No Network</string>
+    <string name="try_after_sometime">Please try after sometime.</string>
+    <string name="button_ok">OK</string>
+
+    <!--  Login Screen  -->
+    <string name="login_with_twitter">Login with Twitter</string>
+    <string name="name_placeholder">Name</string>
+
+    <!--  Feed Activity  -->
+    <string name="for_user">For %s</string>
+    <string name="tweets">Latest Tweets</string>
+</resources>
