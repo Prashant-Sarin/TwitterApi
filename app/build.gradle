@@ -52,6 +52,9 @@ dependencies {
     implementation 'se.akerfeldt:okhttp-signpost:1.1.0'
     implementation 'com.squareup.okhttp3:okhttp:4.8.1'
     implementation 'oauth.signpost:signpost-core:1.2.1.2'
+    // for image loading
     implementation 'com.facebook.fresco:fresco:1.13.0'
+    // for using material design components
+    implementation 'com.google.android.material:material:1.0.0-rc01'
 
 }

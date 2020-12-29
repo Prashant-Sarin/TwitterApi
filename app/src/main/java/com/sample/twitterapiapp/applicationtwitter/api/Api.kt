@@ -3,6 +3,7 @@ package com.sample.twitterapiapp.applicationtwitter.api
 import com.google.gson.GsonBuilder
 import com.sample.twitterapiapp.applicationtwitter.AppConstants
 import com.sample.twitterapiapp.model.Feed
+import com.sample.twitterapiapp.model.Statuses
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -48,5 +49,8 @@ interface Api {
 
     @GET("statuses/home_timeline.json")
     fun getHomeTimeline(@Query("count") count: Int, @Query("include_entities") include_entities: Boolean): Call<ArrayList<Feed>>
+
+    @GET("search/tweets.json")
+    fun getTweets(@Query("q") q: String, @Query("count") count: Int, @Query("include_entities") include_entities: Boolean): Call<Statuses>
 
 }

@@ -2,7 +2,6 @@ package com.sample.twitterapiapp.util
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
 
 object NetworkUtil {
 

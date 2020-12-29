@@ -1,5 +1,6 @@
 package com.sample.twitterapiapp.ui.feed
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
@@ -12,7 +13,9 @@ import com.sample.twitterapiapp.applicationtwitter.prefs.preferences
 import com.sample.twitterapiapp.applicationtwitter.prefs.username
 import com.sample.twitterapiapp.databinding.ActivityFeedBinding
 import com.sample.twitterapiapp.model.Feed
+import com.sample.twitterapiapp.ui.adapter.FeedAdapter
 import com.sample.twitterapiapp.ui.base.BaseActivity
+import com.sample.twitterapiapp.ui.search.SearchActivity
 import com.sample.twitterapiapp.util.NetworkUtil
 import kotlinx.android.synthetic.main.activity_feed.*
 
@@ -45,6 +48,8 @@ class FeedActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        feedsList = preferences.feeds
+        setupfeeds()
         viewModel?.getFeeds(this)
     }
 
@@ -54,7 +59,12 @@ class FeedActivity : BaseActivity() {
     private fun initUI() {
         supportActionBar?.title = getString(R.string.tweets)
         supportActionBar?.subtitle = getString(R.string.for_user, preferences.username)
+
+        fabSearch?.setOnClickListener {
+            navigateToSearchActivity()
+        }
     }
+
 
     /**
      * Init observers for viewModel liveData variables
@@ -89,4 +99,13 @@ class FeedActivity : BaseActivity() {
             feedAdapter?.notifyDataSetChanged()
         }
     }
+
+    /**
+     * Navigates to SearchActivity
+     */
+    private fun navigateToSearchActivity() {
+        val intent = Intent(this, SearchActivity::class.java)
+        startActivity(intent)
+    }
+
 }

@@ -12,4 +12,10 @@
     <string name="for_user">For %s</string>
     <string name="tweets">Latest Tweets</string>
     <string name="count_placeholder">0</string>
+
+    <!--  Search Activity  -->
+    <string name="search">Search</string>
+    <string name="search_hint">Type to Search</string>
+    <string name="no_result">No result found for search criteria.</string>
+    <string name="sort_description">Sort by popularity</string>
 </resources>

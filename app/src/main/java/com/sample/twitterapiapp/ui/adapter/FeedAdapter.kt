@@ -1,4 +1,4 @@
-package com.sample.twitterapiapp.ui.feed
+package com.sample.twitterapiapp.ui.adapter
 
 import android.content.Context
 import android.net.Uri
